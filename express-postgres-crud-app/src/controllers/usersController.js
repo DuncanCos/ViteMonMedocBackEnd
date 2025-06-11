@@ -53,11 +53,11 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const { id } = req.params;
-        const { username, password, type } = req.body;
+        const { username, type } = req.body;
 
         const result = await pool.query(
-            'UPDATE "Users" SET username = $1, password = $2, type = $3 WHERE id = $4 RETURNING *',
-            [username, password, type, id]
+            'UPDATE "Users" SET username = $1, type = $2 WHERE id = $3 RETURNING *',
+            [username, type, id]
         );
 
         if (result.rows.length === 0) {

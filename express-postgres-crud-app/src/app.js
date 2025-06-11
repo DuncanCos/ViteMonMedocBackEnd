@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Ajout de cors
 const usersRoutes = require('./routes/usersRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors()); // Utilisation de cors
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -3,6 +3,7 @@ const usersController = require('../controllers/usersController');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { user } = require('pg/lib/defaults.js');
 
 // Middleware existant
 router.post('/', usersController.createUser);
@@ -27,7 +28,7 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ id: result.id, username: result.username,role: result.type }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, user: { type: result.type } });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

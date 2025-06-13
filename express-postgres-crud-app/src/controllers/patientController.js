@@ -97,7 +97,7 @@ exports.updatePatient = async (req, res) => {
             `UPDATE "Patients" 
             SET nom = $1, prenom = $2, age = $3, poids = $4, taille = $5, traitement_en_cours = $6, medicament = $7, medecin_id = $8, notes = $9, rdv = $10, statut = $11, numero_de_telephone = $12 , mail = $13
             WHERE id = $14 RETURNING *`,
-            [nom, prenom, age, poids, taille, traitement_en_cours, medicament, medecin_id, notes, rdv, statut, numero_de_telephone, id, mail]
+            [nom, prenom, age, poids, taille, traitement_en_cours, medicament, medecin_id, notes, rdv, statut, numero_de_telephone,  mail,id]
         );
 
         if (result.rows.length === 0) {
